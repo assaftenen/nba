@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1. Reset margins, paddings, and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Set up default font, line height, and smoothing */
+html {
+    font-size: 100%; /* Use rems for scaling */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* 3. Default link styles */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 4. Remove default list styling */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 5. Remove default button and input styles */
+button,
+input {
+    font-family: inherit;
+    border: none;
+    background: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* 6. Ensure images don't exceed their containers */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 7. Basic container utility */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
