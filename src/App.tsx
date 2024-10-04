@@ -1,38 +1,25 @@
-import React, { useState } from 'react';
-import { useFetchPlayer } from './core/hooks/useFetchPlayer';
-import { useDebounce } from './core/hooks/useDebounce';
-
+import { useRef, useState } from 'react';
+import { Player } from './core/types/player.types';
+import { Favorites } from './features/components/Favorite';
+import { Players } from './features/components/players/Players';
 
 function App() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const {debouncedTerm} = useDebounce(searchTerm)
-    const { data, error, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useFetchPlayer(debouncedTerm);
-
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value);
+    const [favoritesPlayers, setFavoritesPlayers] = useState<Player[]>([]);
+    const addFavoritePlayer = (player: Player) => {
+        const isAlreadyFavorite = favoritesPlayers.find((nbaPlayer) => nbaPlayer.id === player.id);
+        if (!isAlreadyFavorite) setFavoritesPlayers((prev) => [...prev, player]);
     };
-
+    const removeFavoritePlayer = useRef((id: number) => {
+        setFavoritesPlayers((prev) => prev.filter((player) => player.id !== id));
+    });
     return (
-        <div>
-            <h1>Player List</h1>
-            <input type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Search players..." />
-            {isLoading && <div>Loading...</div>}
-            {error && <div>Error loading data</div>}
-            <div>{data?.pages.map((page) => page.data.map((player) => <div key={player.id}>{player.id}</div>))}</div>
-            {isFetchingNextPage && <div>Loading more...</div>}
-            {hasNextPage && !isFetchingNextPage && <button onClick={() => fetchNextPage()}>Load More</button>}
+        <div className="bg-gray-800 min-h-screen w-screen ">
+            <div className="flex gap-1 mx-auto text-white ">
+                <Players favoritesPlayers={new Set(favoritesPlayers)} removeFavoritePlayer={removeFavoritePlayer} addFavoritePlayer={addFavoritePlayer} />
+                <Favorites favoritesPlayers={favoritesPlayers} removeFavoritePlayer={removeFavoritePlayer} />
+            </div>
         </div>
     );
 }
 
 export default App;
-
-
-
-// create debounce
-// create additonal component under app - players
-// create additional component on the right - favorites
-// debounce
-// scroller
-// by clicking => create new hook - add to list of fav
-
