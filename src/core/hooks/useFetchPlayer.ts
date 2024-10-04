@@ -20,13 +20,14 @@ const fetchPlayer = async ({ cursor = 0, search = '' }: { cursor?: number; searc
     return res.data;
 };
 
-export const useFetchPlayer = (search: string) => {
+export const useFetchPlayer = (search?: string) => {
+    if (!search) search = '';
     const { data, error, isLoading, hasNextPage, fetchNextPage, isSuccess, isFetchingNextPage } = useInfiniteQuery({
         queryFn: ({ pageParam = 0 }) => fetchPlayer({ cursor: pageParam, search }),
         queryKey: ['players', search], // Include search term in the queryKey
         initialPageParam: 0,
         getNextPageParam: (lastPage: PlayersFetchResponse) => {
-            // Return undefined when there is no next page
+            //fix condition
             return lastPage.meta.next_cursor !== null ? lastPage.meta.next_cursor : undefined;
         },
     });
