@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Player } from './core/types/player.types';
-import { Favorites } from './features/components/Favorite';
-import { Players } from './features/components/players/Players';
+import { Favorites } from './features/favorites/Favorites';
+import { Players } from './features/players/Players';
 
 function App() {
     const [favoritesPlayers, setFavoritesPlayers] = useState<Player[]>([]);
@@ -15,7 +15,11 @@ function App() {
     return (
         <div className="bg-gray-800 min-h-screen w-screen ">
             <div className="flex gap-1 mx-auto text-white ">
-                <Players favoritesPlayers={new Set(favoritesPlayers)} removeFavoritePlayer={removeFavoritePlayer} addFavoritePlayer={addFavoritePlayer} />
+                <Players
+                    favoritesPlayers={new Set(favoritesPlayers)}
+                    removeFavoritePlayer={removeFavoritePlayer}
+                    addFavoritePlayer={addFavoritePlayer}
+                />
                 <Favorites favoritesPlayers={favoritesPlayers} removeFavoritePlayer={removeFavoritePlayer} />
             </div>
         </div>

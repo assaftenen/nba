@@ -6,7 +6,7 @@ export const SearchInput = ({ searchTerm, handleSearchChange }: SearchInputProps
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Search players..."
-            className="w-full p-2 mb-4 bg-gray-700 text-white rounded"
+            className="w-full p-2  bg-gray-700 text-white rounded-xl"
         />
     );
 };
