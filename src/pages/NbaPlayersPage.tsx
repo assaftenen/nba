@@ -16,7 +16,7 @@ function NbaPlayersPage() {
         <div className="bg-gray-800 min-h-screen w-screen ">
             <div className="flex gap-1 mx-auto text-white ">
                 <Players
-                    favoritesPlayers={new Set(favoritesPlayers)}
+                    favoritesPlayers={favoritesPlayers}
                     removeFavoritePlayer={removeFavoritePlayer}
                     addFavoritePlayer={addFavoritePlayer}
                 />

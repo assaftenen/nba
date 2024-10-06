@@ -9,7 +9,7 @@ import { SearchInput } from './components/SearchInput';
 interface PlayersProps {
     addFavoritePlayer: (player: Player) => void;
     removeFavoritePlayer: MutableRefObject<(id: number) => void>;
-    favoritesPlayers: Set<Player>;
+    favoritesPlayers: Player[];
 }
 
 export const Players = ({ addFavoritePlayer, removeFavoritePlayer, favoritesPlayers }: PlayersProps) => {
